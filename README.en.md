@@ -18,7 +18,7 @@ A four-pack of BF-777S radios was listed at around R$180
 (in November 2026). Keep one at the base and rotate the others: when a
 battery runs out, grab another radio and leave that one charging.
 
-![RX and TX audio paths between the radio, ESP32 and Hermes Agent (Portuguese labels)](docs/assets/infographics/visao-geral-pt-BR-v8.png)
+![RX and TX audio paths between the radio, ESP32 and Hermes Agent](docs/assets/infographics/overview-en-v1.png)
 
 This repo is a **self-contained build guide**: parts list, wiring, firmware,
 host audio plumbing, the Hermes patches that turn its voice mode into a
