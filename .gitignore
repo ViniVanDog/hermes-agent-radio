@@ -1,0 +1,27 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+.build-venv/
+.stt-venv/
+
+# Recordings and generated transcripts
+utterances/
+
+# Downloaded speech-recognition models
+models/
+
+# Your private voice-clone reference audio
+voices/
+
+# Local credentials (copy firmware/BaofengRx/secrets.example.h)
+secrets.h
+
+# PlatformIO build output
+.pio/
+.platformio-core/
+
+# Radio backups, scanner state, logs and other local captures
+diagnostics/
+
+# Local env files for the systemd units
+*.env

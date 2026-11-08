@@ -1,0 +1,15 @@
+# Hermes VM (optional): live STT/TTS, usage meter and scanner UI on port 8787.
+[Unit]
+Description=Hermes radio dashboard
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/hermes-agent-radio
+EnvironmentFile=-%h/.config/baofeng-radio/baofeng.env
+ExecStart=/usr/bin/python3 -m baofeng_bridge.web.dashboard --bind 0.0.0.0 --port 8787
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=default.target

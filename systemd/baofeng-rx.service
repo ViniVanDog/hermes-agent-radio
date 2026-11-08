@@ -1,0 +1,16 @@
+# Hermes VM: received radio audio (UDP 7777) -> ALSA loopback -> Hermes' microphone.
+# Also writes the RX gate file that apply_radio_gate.py watches.
+[Unit]
+Description=Baofeng RX audio into the Hermes loopback microphone
+After=network-online.target sound.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/hermes-agent-radio
+ExecStart=/usr/bin/python3 -u -m baofeng_bridge.audio.radio_rx --playback-device plughw:HermesLoopback,0,0
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=default.target

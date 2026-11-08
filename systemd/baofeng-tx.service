@@ -1,0 +1,16 @@
+# Hermes VM: Hermes' TTS output (ALSA loopback) -> ESP32 UDP 7778 -> PTT + radio mic.
+[Unit]
+Description=Baofeng TX bridge from the Hermes loopback speaker to the ESP32
+After=network-online.target sound.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/hermes-agent-radio
+EnvironmentFile=%h/.config/baofeng-radio/baofeng.env
+ExecStart=/usr/bin/python3 -u -m baofeng_bridge.audio.radio_tx_bridge --esp32-host ${ESP32_HOST} --capture-device plughw:HermesLoopback,0,0
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=default.target

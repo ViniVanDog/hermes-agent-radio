@@ -1,0 +1,16 @@
+# Host PC: ESP32 RX audio -> Hermes VM, muted while the scanner owns the radio.
+[Unit]
+Description=Baofeng RX relay (ESP32 -> Hermes VM) with scanner isolation
+After=network-online.target baofeng-scanner.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/hermes-agent-radio
+EnvironmentFile=%h/.config/baofeng-radio/baofeng.env
+ExecStart=/usr/bin/python3 -u -m baofeng_bridge.audio.udp_relay --target-host ${VM_HOST} --allow-source ${RADIO_HOST}
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=default.target

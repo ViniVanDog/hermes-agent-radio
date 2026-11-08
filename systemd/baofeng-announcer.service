@@ -1,0 +1,15 @@
+# Hermes VM (optional): example producer for spoken announcements (no LLM).
+# Replace examples/announcer_stub/announcer.py with your own logic.
+[Unit]
+Description=Example radio announcer (writes announcement files for Hermes to speak)
+
+[Service]
+Type=simple
+WorkingDirectory=%h/hermes-agent-radio
+EnvironmentFile=-%h/.config/baofeng-radio/baofeng.env
+ExecStart=/usr/bin/python3 -u examples/announcer_stub/announcer.py --loop
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,18 @@
+# Host PC (optional): channel-1 scanner controller. Needs the ESP32 on USB and
+# `.build-venv/bin/pip install -r requirements-scanner.txt`.
+[Unit]
+Description=Baofeng single-channel scanner controller
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/hermes-agent-radio
+EnvironmentFile=%h/.config/baofeng-radio/baofeng.env
+ExecStart=%h/hermes-agent-radio/.build-venv/bin/python -u -m baofeng_bridge.scanner.radio_scanner --bind ${SCANNER_BIND} --allow-client ${SCANNER_CLIENT} --allow-client ${SCANNER_BIND}
+Restart=on-failure
+RestartSec=3
+TimeoutStopSec=60
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,23 @@
+# Hermes VM: the agent itself, with radio mode on.
+[Unit]
+Description=Hermes radio agent (RX-gated voice) in tmux session "hermes-radio"
+After=baofeng-rx.service baofeng-tx.service pipewire-pulse.service pulseaudio.service
+Wants=baofeng-rx.service baofeng-tx.service
+
+[Service]
+Type=forking
+# Language of spoken text fixes, handoff notes and examples: en or pt-BR.
+# Set BAOFENG_LANG in the env file to override.
+Environment=BAOFENG_LANG=en
+EnvironmentFile=-%h/.config/baofeng-radio/baofeng.env
+# Hermes' REPL needs a terminal, so it lives in a detached tmux session.
+# Attach with:  tmux attach -t hermes-radio   (detach again with Ctrl+B then D)
+ExecStart=/usr/bin/tmux new-session -d -s hermes-radio -x 160 -y 50 \
+    -e HERMES_RADIO_GATED=1 -e HERMES_RADIO_MIN_UTTERANCE_S=0.8 -e BAOFENG_LANG=${BAOFENG_LANG} \
+    %h/.local/bin/hermes --cli
+ExecStop=/usr/bin/tmux kill-session -t hermes-radio
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target
