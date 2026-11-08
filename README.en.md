@@ -2,7 +2,9 @@
 
 # Hermes Agent Radio
 
-A voice bridge between Baofeng radios, ESP32, and Hermes Agent.
+**Baofeng AI**: talk to Hermes Agent over Baofeng UHF handheld radios
+using an ESP32 voice bridge, speech-to-text (STT), text-to-speech (TTS),
+and MCP tools.
 
 Talk to an AI agent over a cheap handheld radio. You key up on any radio
 on the channel and talk. A Baofeng at the base station receives you, an

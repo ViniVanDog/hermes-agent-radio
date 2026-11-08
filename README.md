@@ -2,7 +2,9 @@
 
 # Hermes Agent Radio
 
-Ponte de voz entre rádios Baofeng, ESP32 e Hermes Agent.
+**Baofeng AI**: converse com o Hermes Agent por rádios UHF Baofeng,
+com uma ponte ESP32, reconhecimento de voz (STT / speech-to-text),
+síntese de voz (TTS / text-to-speech) e ferramentas MCP.
 
 Converse com um agente de IA por um rádio portátil barato. Você aperta o PTT
 de qualquer rádio do canal e fala. Um Baofeng na base recebe, um ESP32
